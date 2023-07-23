@@ -15,11 +15,7 @@ const SetupPage = () => {
     }
   }, [isOpen, onOpen])
 
-  return (
-    <div className="p-4">
-      Root Page
-    </div>
-  )
+  return null //SetupPage는 Modal구성하기위한 수단으로만 사용할꺼여서 null리턴
 }
 
 export default SetupPage

@@ -1,9 +1,5 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-
 import { Button } from "@/components/ui/button"
 import {
   Form, FormControl, FormField, FormItem, FormLabel, FormMessage
@@ -11,8 +7,12 @@ import {
 import { Input } from "@/components/ui/input"
 import { Modal } from "@/components/ui/modal"
 import { useStoreModal } from "@/hooks/use-store-modal"
-import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { toast } from "react-hot-toast"
+import * as z from "zod"
 
 const formSchema = z.object({
   name: z.string().min(1)
@@ -34,12 +34,22 @@ export const StoreModal = () => {
     try {
       setLoading(true)
 
-      const respone = await axios.post('/api/stores', values) 
-      //app/api/stores/routes.ts 여기임 
+      const response = await axios.post('/api/stores', values) 
+      //app/api/stores/routes.ts 여기로 감 (여기서는 store create해줌)
 
-      console.log(respone.data)
+      window.location.assign(`/${response.data.id}`) 
+      /* next/navigation의 redirect 안쓰고 이걸 쓰는 이유
+      navigation은 http요청을 호출하지않고(새로고침안됨)
+      window.locaion.assign은 새 http요청을 호출한다(새로고침) 
+      => 이동과 동시에 새로고침이 필요한경우 이거 사용
+      근데 여기서 왜 redirect안쓰고 이거쓰는지 도무지 모르겠음... 
+      그니깐 느낌적으로는 새고해야하니깐 이거쓰는게 맞는거같은데 왜그런지 설명을 못하겠음
+      */
+
+
+      //toast.success("Store created")
     } catch (error) {
-      console.log(values)
+      toast.error("Something went wrong")
     } finally {
 
     }

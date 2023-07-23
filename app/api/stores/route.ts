@@ -8,7 +8,7 @@ export async function POST (
   try {
     const { userId } = auth()  
     const body = await req.json()
-
+    
     const { name } = body
 
     if(!userId) {
@@ -27,7 +27,7 @@ export async function POST (
     })
 
     return NextResponse.json(store)
-  }catch(error) {
+  } catch (error) {
     console.log('[STORES_POST]', error)
     return new NextResponse("Internal error", { status: 500 })
   }

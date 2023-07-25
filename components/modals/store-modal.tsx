@@ -46,14 +46,12 @@ export const StoreModal = () => {
       그니깐 느낌적으로는 새고해야하니깐 이거쓰는게 맞는거같은데 왜그런지 설명을 못하겠음
       */
 
-
-      //toast.success("Store created")
+      toast.success("Store created")
     } catch (error) {
       toast.error("Something went wrong")
     } finally {
-
+      setLoading(false)
     }
-
   }
   
   return (

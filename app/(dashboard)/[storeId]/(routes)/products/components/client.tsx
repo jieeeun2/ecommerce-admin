@@ -5,15 +5,15 @@ import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 import { PlusIcon } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
-import { BillboardColumn, columns } from "./columns"
+import { ProductColumn, columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
 import { ApiList } from "@/components/ui/api-list"
 
-interface BillboardClientProps {
-  data: BillboardColumn[]
+interface ProductClientProps {
+  data: ProductColumn[]
 }
 
-export const BillboardClient: React.FC<BillboardClientProps> = ({
+export const ProductClient: React.FC<ProductClientProps> = ({
   data
 }) => {
   const router = useRouter()
@@ -23,30 +23,21 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Billboards (${data.length})`}
-          description="Manage billboards for your store"
+          title={`Products (${data.length})`}
+          description="Manage products for your store"
         />  
         <Button
-          onClick={() => router.push(`/${params.storeId}/billboards/new`)}
-        >{/* 클릭하면 app/(dashboard)/[storeId]/(routes)/billboards/[billboardId]/page.tsx로 가게됨 
-          근데 왜 여기로 가는지 잘 모르겠음 저 파일에 접근하려면
-          `${params.storeId}/billboards/${params.billboardId}` 이렇게 되야하는거 아닌가 
-          
-          app/(dashboard)/[storeId]/(routes)/billboards/[billboardId]/page.tsx에서 파라미터로 들어오는 params 찍어보니깐
-          { storeId: '8d86eca6-28f4-481a-9feb-e57247ea7737', billboardId: 'new' } 이렇게 나옴
-          `${params.storeId}/billboards/${params.billboardId}`에서
-          ${params.billboardId}가 new라는거임
-          모르고 보면 헷갈리군
-          */}
+          onClick={() => router.push(`/${params.storeId}/products/new`)}
+        >
           <PlusIcon className="mr-2 h-4 w-4" />  
           Add New
         </Button>  
       </div>
       <Separator />
-      <DataTable searchKey="label" columns={columns} data={data}/>
-      <Heading title="API" description="API calls for Billboards" />
+      <DataTable searchKey="name" columns={columns} data={data}/>
+      <Heading title="API" description="API calls for Products" />
       <Separator />
-      <ApiList entityName="billboards" entityIdName="billboardId"/>
+      <ApiList entityName="products" entityIdName="productId"/>
     </>
   )
 }

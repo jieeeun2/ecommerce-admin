@@ -17,7 +17,8 @@ const ProductsPage = async ({
       category: true,
       size: true,
       color: true
-    },
+    }, /* !!!이거 안해주면 category, size, color 모델을 가져오지않음. 
+    그래서 formattedProducts에 item.category.name 여기에 에러남 */
     orderBy: {
       createdAt: 'desc'
     }
@@ -30,7 +31,8 @@ const ProductsPage = async ({
     price: formatter.format(item.price.toNumber()),
     isFeatured: item.isFeatured,
     isArchived: item.isArchived,
-    size: item.category.name,
+    size: item.size.name,
+    color: item.color.value,
     createdAt: format(item.createdAt, "MMMM do, yyyy")
   }))
 

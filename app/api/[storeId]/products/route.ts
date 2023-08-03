@@ -107,8 +107,8 @@ export async function GET (
       where: {
         storeId: params.storeId,
         categoryId,
-        isFeatured: isFeatured ? true: undefined, //???
-        isArchived: false, //???
+        isFeatured: isFeatured ? true: undefined, //???isFeatured 속성이 뭐하는건지 잘 모르겠음
+        isArchived: false, //???이거 사용자의 선택여부에 따라서 달라져야하는데 왜 false를 그냥 넣어놓음????
         sizeId,
         colorId
       },

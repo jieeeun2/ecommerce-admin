@@ -68,7 +68,7 @@ export async function GET (
         storeId: params.storeId
       }
     })
-
+    
     return NextResponse.json(billboard)
   } catch (error) {
     console.log('[BILLBOARDS_GET]', error)

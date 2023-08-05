@@ -1,7 +1,6 @@
-import prismadb from "@/lib/prismadb"
-import { auth } from "@clerk/nextjs"
-import { NextResponse } from "next/server"
-import { Billboard } from '@prisma/client';
+import prismadb from "@/lib/prismadb";
+import { auth } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export async function GET (
   req: Request, 
@@ -15,6 +14,9 @@ export async function GET (
     const category = await prismadb.category.findUnique({ 
       where: {
         id: params.categoryId
+      },
+      include: {
+        billboard: true
       }
     })
 

@@ -1,7 +1,7 @@
 import prismadb from "@/lib/prismadb"
 import { ProductForm } from "./components/product-form"
 
-const BillboardPage = async ({
+const ProductPage = async ({
   params
 }: {
   params: { productId: string, storeId: string }
@@ -45,4 +45,4 @@ const BillboardPage = async ({
   )
 }
 
-export default BillboardPage
+export default ProductPage

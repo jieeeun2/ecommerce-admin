@@ -45,7 +45,7 @@ export async function POST (
         storeId: params.storeId
       }
     })
-
+    
     return NextResponse.json(category)
   } catch (error) {
     console.log('[CATEGORIES_POST]', error)
@@ -68,7 +68,7 @@ export async function GET (
         storeId: params.storeId
       }
     })
-
+    
     return NextResponse.json(category)
   } catch (error) {
     console.log('[CATEGORIES_GET]', error)
